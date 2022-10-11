@@ -1,32 +1,51 @@
-# Prerequisites
-*.d
+// NAMA		: Muhammad Ihsan Alfarisi
+// NRP		: 5024221013
+// Jurusan	: Teknik Komputer
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+#include <iostream>
+#include <cmath>
 
-# Precompiled Headers
-*.gch
-*.pch
+#define GRAVITASI 10 //10 m/s^2
+#define START_PENGUKURAN 1 //pengukuran dimulai dari 1 meter
+#define SUDUT 45 //sudut elevasi tembakan
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+using namespace std;
 
-# Fortran module files
-*.mod
-*.smod
+float mencari_V0(int r, int s){
+	float v;
+    
+    v = sqrt(10 * r) + s;
+    
+  	return v;
+}
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+int speed_dgn_loss(int vt){
+    int vo;
+    
+    if(vt >= 1 && vt <= 10){
+        vo = vt - 1;
+    }else if(vt >= 11 && vt <= 20){
+        vo = vt - 3;
+    }else if(vt >= 21 && vt <= 30){
+        vo = vt - 5;
+    } 
+    
+    return vo;
+}
 
-# Executables
-*.exe
-*.out
-*.app
+int main() {
+    /* tulis kode utama kalian disini */
+    int v, r;
+    
+  	/* input adalah kecepatan tangensial maksimum roller */
+  	cin >> v;
+    
+    int vo = speed_dgn_loss(v);
+    
+    r = pow(vo,2)/10;
+    
+    float vtn = mencari_V0(r, v - vo);
+  
+  	cout << r << " " << vtn << endl;
+    return 0;
+}
